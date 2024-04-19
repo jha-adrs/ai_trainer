@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +8,125 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  name        String
+  username    String        @unique
+  password    String
+  email       String        @unique
+  age         Int
+  height      Float
+  weight      Float
+  dob         DateTime
+  bmi         Float
+  gender      String
+  goal        Goal[]
+  progress    Progress[]
+  workoutPlan WorkoutPlan[]
+  feedback    Feedback[]
+  achievement Achievement[]
+}
+
+model Goal {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  goalWeight Float
+  goal       String
+  goalBmi    Float
+  user       User   @relation(fields: [userId], references: [id])
+}
+
+model Exercise {
+  id                   Int       @id @default(autoincrement())
+  name                 String
+  bodyJointCoordinates String
+  targetBodyPart       String
+  difficulty           String
+  reps                 Int
+  workouts             Workout[]
+  equipmentId          Int
+  equipment            Equipment @relation(fields: [equipmentId], references: [id])
+}
+
+model Workout {
+  id              Int         @id @default(autoincrement())
+  exerciseId      Int
+  workoutDuration Int
+  difficultyLevel String
+  exercise        Exercise    @relation(fields: [exerciseId], references: [id])
+  workoutPlanId   Int
+  workoutPlan     WorkoutPlan @relation(fields: [workoutPlanId], references: [id])
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  login    String @unique
+  password String
+}
+
+model Nutrition {
+  id       Int    @id @default(autoincrement())
+  calories Int
+  dietType String
+  food     String
+  protein  Float
+  fat      Float
+  carbs    Float
+  vitamins String
+  minerals String
+  meal     Meal[]
+}
+
+model Progress {
+  id               Int   @id @default(autoincrement())
+  userId           Int
+  avgSleep         Float
+  workoutDuration  Int
+  caloriesBurnt    Int
+  weight           Float
+  accuracyExercise Float
+  user             User  @relation(fields: [userId], references: [id])
+}
+
+model Meal {
+  id          Int       @id @default(autoincrement())
+  name        String
+  calories    Int
+  dietType    String
+  ingredients String
+  nutritionId Int
+  nutrition   Nutrition @relation(fields: [nutritionId], references: [id])
+}
+
+model WorkoutPlan {
+  id       Int       @id @default(autoincrement())
+  name     String
+  userId   Int
+  user     User      @relation(fields: [userId], references: [id])
+  workouts Workout[]
+}
+
+model Feedback {
+  id      Int    @id @default(autoincrement())
+  userId  Int
+  content String
+  rating  Int
+  user    User   @relation(fields: [userId], references: [id])
+}
+
+model Equipment {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  exercises   Exercise[]
+}
+
+model Achievement {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id])
 }
