@@ -46,17 +46,16 @@ export function UserNav() {
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              Billing
+              Achievements
               <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuItem>
               Settings
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
-            <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => signOut()}>
+          <DropdownMenuItem onClick={() => signOut()} className="hover:bg-destructive">
             Log out
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>

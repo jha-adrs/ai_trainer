@@ -2,15 +2,15 @@ import Providers from "@/components/layout/providers";
 import { Toaster } from "@/components/ui/toaster";
 import "@uploadthing/react/styles.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const montserrat = Montserrat({ subsets: ["latin"],weight: ["400", "500", "600", "700"]});
 export const metadata: Metadata = {
-  title: "Next Shadcn",
-  description: "Basic dashboard with Next.js and Shadcn",
+  title: "AI Trainer",
+  description: "Your dashboard for AI Trainer",
 };
 
 export default async function RootLayout({
@@ -21,7 +21,7 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} overflow-hidden`}>
+      <body className={`${montserrat.className} overflow-hidden`}>
         <Providers session={session}>
           <Toaster />
           {children}

@@ -7,8 +7,10 @@ import {
   CircuitBoardIcon,
   Command,
   CreditCard,
+  DumbbellIcon,
   File,
   FileText,
+  GoalIcon,
   HelpCircle,
   Image,
   Laptop,
@@ -17,12 +19,15 @@ import {
   LogIn,
   LucideIcon,
   LucideProps,
+  LucideSalad,
   Moon,
   MoreVertical,
   Pizza,
   Plus,
   Settings,
+  SunDim,
   SunMedium,
+  Sunrise,
   Trash,
   Twitter,
   User,
@@ -87,5 +92,11 @@ export const Icons = {
       <path d="M16.8005 8.74966C18.5114 8.7232 20.1649 9.36697 21.4039 10.5487L24.8299 7.12262C22.6605 5.0855 19.7812 3.96553 16.8005 4.00081C12.2633 4.00081 8.11416 6.55824 6.07704 10.6148L10.0631 13.7058C11.0111 10.8617 13.6699 8.74966 16.8005 8.74966Z" fill="#EA4335" />
     </svg>
 
-  )
+  ),
+  dumbells: DumbbellIcon,
+  food: LucideSalad,
+  goals: GoalIcon,
+  sundim: SunDim,
+  sunrise: Sunrise,
+  
 };
