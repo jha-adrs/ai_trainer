@@ -27,3 +27,7 @@ export function hasDraggableData<T extends Active | Over>(
 
   return false;
 }
+
+export function capitalizeFirstLetter(string:string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}

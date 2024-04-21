@@ -92,6 +92,7 @@ export const users: User[] = [
   },
 ];
 
+
 export type Employee = {
   id: number;
   first_name: string;
@@ -151,12 +152,98 @@ export const navItems: NavItem[] = [
 ];
 
 
-
-
-
-
-
-
+export const sampleMeals = [
+  {
+    id: 1,
+    name: "Grilled Chicken Salad",
+    description: "A delicious and healthy salad with grilled chicken",
+    image: "/images/salad.jpg",
+    calories: 350,
+    protein: 25,
+    carbs: 15,
+    fat: 20,
+    ingredients: [
+      "Grilled chicken breast",
+      "Mixed greens",
+      "Cherry tomatoes",
+      "Cucumber",
+      "Red onion",
+      "Feta cheese",
+      "Balsamic vinaigrette",
+    ],
+    recipe: `1. Season the chicken breast with salt, pepper, and olive oil.
+    2. Grill the chicken breast until fully cooked.
+    3. In a large bowl, combine the mixed greens, cherry tomatoes, cucumber, red onion, and feta cheese
+    4. Slice the grilled chicken breast and place on top of the salad
+    5. Drizzle with balsamic vinaigrette and serve`,
+  },
+  {
+    id: 2,
+    name: "Avocado Toast",
+    description: "A simple and delicious avocado toast recipe",
+    image: "/images/salad.jpg",
+    calories: 250,
+    protein: 10,
+    carbs: 20,
+    fat: 15,
+    ingredients: [
+      "Whole grain bread",
+      "Avocado",
+      "Cherry tomatoes",
+      "Red pepper flakes",
+      "Lemon juice",
+      "Salt and pepper",
+    ],
+    recipe: `1. Toast the whole grain bread until golden brown
+    2. Mash the avocado with lemon juice, salt, and pepper
+    3. Spread the mashed avocado on the toast
+    4. Top with sliced cherry tomatoes and red pepper flakes
+    5. Serve immediately`,
+  },
+  {
+    id: 3,
+    name: "Greek Yogurt Parfait",
+    description: "A healthy and delicious greek yogurt parfait",
+    image: "/images/salad.jpg",
+    calories: 200,
+    protein: 15,
+    carbs: 25,
+    fat: 10,
+    ingredients: [
+      "Greek yogurt",
+      "Granola",
+      "Mixed berries",
+      "Honey",
+    ],
+    recipe: `1. In a glass or bowl, layer greek yogurt, granola, mixed berries, and honey
+    2. Repeat the layers until the glass or bowl is full
+    3. Serve immediately`,
+  },
+  {
+    id: 4,
+    name: "Quinoa Salad",
+    description: "A refreshing and healthy quinoa salad",
+    image: "/images/salad.jpg",
+    calories: 300,
+    protein: 20,
+    carbs: 30,
+    fat: 15,
+    ingredients: [
+      "Quinoa",
+      "Cucumber",
+      "Cherry tomatoes",
+      "Red onion",
+      "Feta cheese",
+      "Lemon juice",
+      "Olive oil",
+    ],
+    recipe: `1. Cook the quinoa according to package instructions
+    2. In a large bowl, combine the cooked quinoa, cucumber, cherry tomatoes, red onion, and feta cheese
+    3. Drizzle with lemon juice and olive oil
+    4. Toss to combine and serve`,
+  },
+  
+]
 
 
 

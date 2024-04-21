@@ -16,7 +16,7 @@ model User {
   username           String?             @unique
   password           String?
   email              String              @unique
-  image              String?    @db.Text
+  image              String?             @db.Text
   age                Int?
   height             Float?
   weight             Float?
@@ -32,7 +32,10 @@ model User {
   Sessions           Session[]
   Accounts           Account[]
   VerificationTokens VerificationToken[]
-
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  mealPlanId         Int?
+  mealPlan           MealPlan?           @relation(fields: [mealPlanId], references: [id])
 }
 
 model Session {
@@ -104,19 +107,6 @@ model Admin {
   password String
 }
 
-model Nutrition {
-  id       Int    @id @default(autoincrement())
-  calories Int
-  dietType String
-  food     String
-  protein  Float
-  fat      Float
-  carbs    Float
-  vitamins String
-  minerals String
-  meal     Meal[]
-}
-
 model Progress {
   id               Int   @id @default(autoincrement())
   userId           Int
@@ -128,14 +118,32 @@ model Progress {
   user             User  @relation(fields: [userId], references: [id])
 }
 
+model MealPlan {
+  id     Int    @id @default(autoincrement())
+  name   String
+  meals  Meal[]
+  users  User[]
+}
+// Calories, Protein, Carbs, Fats are in grams
 model Meal {
-  id          Int       @id @default(autoincrement())
-  name        String
-  calories    Int
-  dietType    String
-  ingredients String
-  nutritionId Int
-  nutrition   Nutrition @relation(fields: [nutritionId], references: [id])
+  id         Int        @id @default(autoincrement())
+  name       String
+  calories   Int
+  protein    Int
+  carbs      Int
+  fats       Int
+  idealTime  MEAL_TIMES
+  recipe     String?
+  image      String?
+  mealPlanId Int
+  mealPlan   MealPlan   @relation(fields: [mealPlanId], references: [id])
+}
+
+enum MEAL_TIMES {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
 }
 
 model WorkoutPlan {
