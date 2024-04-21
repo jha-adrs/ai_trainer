@@ -11,9 +11,19 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getSession } from "@/lib/auth-options";
 import { FlameIcon, LucideDumbbell, LucideTimer, TargetIcon } from "lucide-react";
+import { redirect } from "next/navigation";
 
-export default function page() {
+export default async function page() {
+  const session = await getSession();
+  
+  if(!session || !session.user) {
+    console.log("No session found, redirecting to signin page");
+    redirect("/signin");
+    return null;
+  }
+
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">

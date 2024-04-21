@@ -55,7 +55,7 @@ export function UserNav() {
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => signOut()} className="hover:bg-destructive">
+          <DropdownMenuItem onClick={() => signOut({callbackUrl : "/signin"})} className="hover:bg-destructive">
             Log out
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
