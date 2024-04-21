@@ -1,8 +1,16 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialProvider from "next-auth/providers/credentials";
-
+import {PrismaAdapter} from "@next-auth/prisma-adapter"
+import { db } from "./db";
+import { config } from "@/config/config";
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(db), // Use Prisma Adapter for NextAuth
+  session: {
+    strategy: "database",
+  },
+  secret: config.NEXTAUTH_SECRET,
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -29,8 +37,31 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID ?? "",
+      clientSecret: process.env.GOOGLE_SECRET ?? "",
+    })
   ],
   pages: {
-    signIn: "/", //sigin page
+    signIn: "/signin", //signin page
   },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user = user;
+      return session;
+    } 
+    
+
+  },
+  events: {
+    signIn: async ({ user, isNewUser }) => {
+      console.log("signIn", user.email);
+    },
+    createUser: async ({ user }) => {
+      console.log("createUser", user);
+    }
+  }
 };
+
+
+export const getSession = () => getServerSession(authOptions);

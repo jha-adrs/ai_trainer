@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
+import { getSession } from "@/lib/auth-options";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"],weight: ["400", "500", "600", "700"]});
@@ -18,7 +19,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getSession();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${montserrat.className} overflow-hidden`}>

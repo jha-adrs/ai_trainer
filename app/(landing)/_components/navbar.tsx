@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { getSession } from "@/lib/auth-options"
 import { ArrowRight, Loader } from "lucide-react"
 import { getServerSession } from "next-auth"
 import Link from "next/link"
@@ -7,7 +8,7 @@ import { Suspense } from "react"
 
 
 export const NavbarLanding = async () => {
-    const session = await getServerSession()
+    const session = await getSession()
     return (
         <div className="flex flex-row h-12 w-full items-center justify-between px-6">
 

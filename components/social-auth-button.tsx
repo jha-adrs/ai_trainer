@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { Icons } from "./icons";
 
 export default function SocialSignInButton({
-  provider = "github",
+  provider,
 }:{
   provider:string
 }) {
@@ -19,7 +19,7 @@ export default function SocialSignInButton({
       variant="outline"
       type="button"
       onClick={() =>
-        signIn(provider, { callbackUrl: callbackUrl ?? "/dashboard" })
+        signIn(provider, { callbackUrl: "/dashboard" })
       }
     >
       {
@@ -27,7 +27,9 @@ export default function SocialSignInButton({
           <Icons.gitHub className="w-5 h-5 mr-2" />
         ) : provider === "twitter" ? (<Icons.twitter className="w-5 h-5 mr-2" />) : provider === "google" ? (<Icons.google className="w-5 h-5 mr-2" />) : null
       }
-      Continue with Github
+      Continue with {
+        provider === 'github' ? 'GitHub' : provider === 'twitter' ? 'Twitter' : provider === 'google' ? 'Google' : 'Provider'
+      }
     </Button>
   );
 }
