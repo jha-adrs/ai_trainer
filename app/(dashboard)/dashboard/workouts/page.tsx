@@ -1,15 +1,18 @@
 import BreadCrumb from "@/components/breadcrumb";
 import { columns } from "@/components/tables/employee-tables/columns";
 import { EmployeeTable } from "@/components/tables/employee-tables/employee-table";
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Employee } from "@/constants/data";
-import { cn } from "@/lib/utils";
+import { Employee, sampleWorkouts } from "@/constants/data";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-const breadcrumbItems = [{ title: "Employee", link: "/dashboard/employee" }];
+const breadcrumbItems = [{ title: "Workouts", link: "/dashboard/workouts" }];
 
 type paramsProps = {
   searchParams: {
@@ -25,7 +28,7 @@ export default async function page({ searchParams }: paramsProps) {
 
   const res = await fetch(
     `https://api.slingacademy.com/v1/sample-data/users?offset=${offset}&limit=${pageLimit}` +
-      (country ? `&search=${country}` : ""),
+    (country ? `&search=${country}` : ""),
   );
   const employeeRes = await res.json();
   const totalUsers = employeeRes.total_users; //1000
@@ -38,8 +41,8 @@ export default async function page({ searchParams }: paramsProps) {
 
         <div className="flex items-start justify-between">
           <Heading
-            title={`Employee (${totalUsers})`}
-            description="Manage employees (Server side table functionalities.)"
+            title={`Workouts `}
+            description="View popular workouts"
           />
 
           <Link
@@ -51,15 +54,59 @@ export default async function page({ searchParams }: paramsProps) {
         </div>
         <Separator />
 
-        <EmployeeTable
-          searchKey="country"
-          pageNo={page}
-          columns={columns}
-          totalUsers={totalUsers}
-          data={employee}
-          pageCount={pageCount}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-2">
+          {
+            sampleWorkouts.map((wk) => (
+              <WorkoutCard
+                key={wk.id}
+                id={wk.id}
+                name={wk.name}
+                equipment={wk.equipment}
+                users={wk.users}
+                level={wk.level}
+                sets={wk.sets}
+
+              />
+            ))
+          }
+        </div>
       </div>
     </>
   );
+}
+
+interface WorkoutCardProps {
+  id: number;
+  equipment: boolean;
+  users: number;
+  level: string;
+  sets: number;
+  name: string;
+}
+
+const WorkoutCard = ({ id,
+  name,
+  equipment,
+  users,
+  level,
+  sets, }: WorkoutCardProps) => {
+  return (
+    <Card className=" flex flex-col items-center justify-center">
+      <CardHeader>
+        <Image src="/images/squat.jpg" alt={name} width={200} height={150} className="rounded-lg" />
+      </CardHeader>
+      <CardContent >
+        <div className="flex flex-row justify-between items-center space-x-1">
+          <h3 className="text-lg font-semibold">{name}</h3>
+          <Badge className="">{level}</Badge>
+        </div>
+        <p className="text-sm text-gray-500">Equipment {equipment? "YES": "NO"}</p>
+        <div className="flex justify-between">
+          <div>
+            <p className="text-sm font-semibold"> {sets} <span className="text-muted-foreground">sets</span></p>
+           </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
 }

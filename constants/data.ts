@@ -219,34 +219,37 @@ export const sampleMeals = [
     2. Repeat the layers until the glass or bowl is full
     3. Serve immediately`,
   },
-  {
-    id: 4,
-    name: "Quinoa Salad",
-    description: "A refreshing and healthy quinoa salad",
-    image: "/images/salad.jpg",
-    calories: 300,
-    protein: 20,
-    carbs: 30,
-    fat: 15,
-    ingredients: [
-      "Quinoa",
-      "Cucumber",
-      "Cherry tomatoes",
-      "Red onion",
-      "Feta cheese",
-      "Lemon juice",
-      "Olive oil",
-    ],
-    recipe: `1. Cook the quinoa according to package instructions
-    2. In a large bowl, combine the cooked quinoa, cucumber, cherry tomatoes, red onion, and feta cheese
-    3. Drizzle with lemon juice and olive oil
-    4. Toss to combine and serve`,
-  },
   
 ]
 
 
-
+export const sampleWorkouts = [
+  {
+    id: 1,
+    name: "Bench Press",
+    equipment: true,
+    users: 1000,
+    level: "Advanced",
+    sets: 4,
+  },
+  {
+    "id": 2,
+    "name": "Squats",
+    "equipment": true,
+    "users": 1500,
+    "level": "Intermediate",
+    "sets": 3
+  },
+  {
+    "id": 3,
+    "name": "Deadlift",
+    "equipment": true,
+    "users": 1200,
+    "level": "Advanced",
+    "sets": 4
+  },
+  
+];
 
 
 

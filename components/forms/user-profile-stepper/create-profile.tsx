@@ -323,7 +323,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                   name="gender"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Country</FormLabel>
+                      <FormLabel>Gender</FormLabel>
                       <Select
                         disabled={loading}
                         onValueChange={field.onChange}
@@ -334,7 +334,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                           <SelectTrigger>
                             <SelectValue
                               defaultValue={field.value}
-                              placeholder="Select a country"
+                              placeholder="Select a gender"
                             />
                           </SelectTrigger>
                         </FormControl>

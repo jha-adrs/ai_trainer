@@ -8,6 +8,7 @@ import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { columns } from "./columns";
 import { MealCard } from "@/components/meal-card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProductsClientProps {
   data: User[];
@@ -32,7 +33,7 @@ export const UserClient: React.FC<ProductsClientProps> = ({ data }) => {
       </div>
       <Separator />
       {/* <DataTable searchKey="name" columns={columns} data={data} /> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-2">
           {
             sampleMeals.map((meal) => (
               <MealCard
